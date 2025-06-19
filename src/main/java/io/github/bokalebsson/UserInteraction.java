@@ -8,6 +8,7 @@ public class UserInteraction {
 
     // Prints out the menu in the application.
     public static void displayMenu() {
+        System.out.println();
         System.out.println("=== Currency Converter App ===");
         System.out.println("1. SEK to USD");
         System.out.println("2. SEK to Euro");
@@ -33,32 +34,28 @@ public class UserInteraction {
                     System.out.println("You chose: SEK to USD");
                     double sekToUsd = askForAmount(scanner);
                     double usdResult = CurrencyConverter.convertSekToUsd(sekToUsd);
-                    System.out.printf("%.2f SEK is %.2f USD%n", sekToUsd, usdResult);
-                    System.out.println("[" + getCurrentTimestamp() + "]");
+                    printFormatted("%.2f SEK is %.2f USD%n[%s]", sekToUsd, usdResult, getCurrentTimestamp());
                     break;
 
                 case "2":
                     System.out.println("You chose: SEK to Euro");
                     double sekToEuro = askForAmount(scanner);
                     double euroResult = CurrencyConverter.convertSekToEuro(sekToEuro);
-                    System.out.printf("%.2f SEK is %.2f Euro%n", sekToEuro, euroResult);
-                    System.out.println("[" + getCurrentTimestamp() + "]");
+                    printFormatted("%.2f SEK is %.2f Euro%n[%s]", sekToEuro, euroResult, getCurrentTimestamp());
                     break;
 
                 case "3":
                     System.out.println("You chose: USD to SEK");
                     double usdToSek = askForAmount(scanner);
                     double sekResult1 = CurrencyConverter.convertUsdToSek(usdToSek);
-                    System.out.printf("%.2f USD is %.2f SEK%n", usdToSek, sekResult1);
-                    System.out.println("[" + getCurrentTimestamp() + "]");
+                    printFormatted("%.2f USD is %.2f SEK%n[%s]", usdToSek, sekResult1, getCurrentTimestamp());
                     break;
 
                 case "4":
                     System.out.println("You chose: Euro to SEK");
                     double euroToSek = askForAmount(scanner);
                     double sekResult2 = CurrencyConverter.convertEuroToSek(euroToSek);
-                    System.out.printf("%.2f Euro is %.2f SEK%n", euroToSek, sekResult2);
-                    System.out.println("[" + getCurrentTimestamp() + "]");
+                    printFormatted("%.2f Euro is %.2f SEK%n[%s]", euroToSek, sekResult2, getCurrentTimestamp());
                     break;
 
                 case "5":
@@ -80,11 +77,13 @@ public class UserInteraction {
 
         // Loops until the user enters a valid (positive) amount.
         while (!valid) {
+            System.out.println();
             System.out.print("Enter amount to convert: ");
             String input = scanner.nextLine();
 
             amount = Validator.parseAmount(input);
             if (amount < 0) {
+                System.out.println();
                 System.out.println("Invalid amount. Please enter a positive number.");
             } else {
                 valid = true;
@@ -100,6 +99,14 @@ public class UserInteraction {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return now.format(formatter);
+    }
+
+
+    // Formats the outputs and creates a bit more space in the terminal.
+    private static void printFormatted(String format, Object... args) {
+        System.out.println();
+        System.out.printf(format, args);
+        System.out.println();
     }
 
 }
