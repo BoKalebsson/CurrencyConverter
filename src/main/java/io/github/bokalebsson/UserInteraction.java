@@ -83,8 +83,7 @@ public class UserInteraction {
 
             amount = Validator.parseAmount(input);
             if (amount < 0) {
-                System.out.println();
-                System.out.println("Invalid amount. Please enter a positive number.");
+                printInvalidAmountMessage();
             } else {
                 valid = true;
             }
@@ -99,6 +98,15 @@ public class UserInteraction {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return now.format(formatter);
+    }
+
+
+    // Prints a more helpful message for an invalid amount.
+    private static void printInvalidAmountMessage() {
+        System.out.println();
+        System.out.println("Oops! That doesn't look like a valid amount.");
+        System.out.println("Try typing a positive number, like 250, 250.50, or 250,50.");
+        System.out.println("Let's try again:");
     }
 
 
