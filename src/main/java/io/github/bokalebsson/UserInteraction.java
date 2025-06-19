@@ -116,7 +116,6 @@ public class UserInteraction {
         System.out.printf(format, args);
         System.out.println();
     }
-
 }
 
 

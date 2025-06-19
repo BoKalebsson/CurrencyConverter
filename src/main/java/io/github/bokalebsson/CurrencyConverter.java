@@ -25,4 +25,5 @@ public class CurrencyConverter {
     public static double convertEuroToSek(double euro) {
         return euro * EURO_TO_SEK_RATE;
     }
+
 }

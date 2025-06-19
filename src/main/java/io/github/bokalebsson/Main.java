@@ -6,5 +6,6 @@ public class Main {
         // Starts the program.
         UserInteraction.handleUserChoices();
 
+
     }
 }
