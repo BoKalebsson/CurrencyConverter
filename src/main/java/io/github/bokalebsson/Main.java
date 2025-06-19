@@ -1,11 +1,9 @@
 package io.github.bokalebsson;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
-        UserInteraction.displayMenu();
+        // Starts the program.
         UserInteraction.handleUserChoices();
 
     }
