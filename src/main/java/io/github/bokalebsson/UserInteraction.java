@@ -1,6 +1,8 @@
 package io.github.bokalebsson;
 
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class UserInteraction {
 
@@ -32,6 +34,7 @@ public class UserInteraction {
                     double sekToUsd = askForAmount(scanner);
                     double usdResult = CurrencyConverter.convertSekToUsd(sekToUsd);
                     System.out.printf("%.2f SEK is %.2f USD%n", sekToUsd, usdResult);
+                    System.out.println("[" + getCurrentTimestamp() + "]");
                     break;
 
                 case "2":
@@ -39,6 +42,7 @@ public class UserInteraction {
                     double sekToEuro = askForAmount(scanner);
                     double euroResult = CurrencyConverter.convertSekToEuro(sekToEuro);
                     System.out.printf("%.2f SEK is %.2f Euro%n", sekToEuro, euroResult);
+                    System.out.println("[" + getCurrentTimestamp() + "]");
                     break;
 
                 case "3":
@@ -46,6 +50,7 @@ public class UserInteraction {
                     double usdToSek = askForAmount(scanner);
                     double sekResult1 = CurrencyConverter.convertUsdToSek(usdToSek);
                     System.out.printf("%.2f USD is %.2f SEK%n", usdToSek, sekResult1);
+                    System.out.println("[" + getCurrentTimestamp() + "]");
                     break;
 
                 case "4":
@@ -53,6 +58,7 @@ public class UserInteraction {
                     double euroToSek = askForAmount(scanner);
                     double sekResult2 = CurrencyConverter.convertEuroToSek(euroToSek);
                     System.out.printf("%.2f Euro is %.2f SEK%n", euroToSek, sekResult2);
+                    System.out.println("[" + getCurrentTimestamp() + "]");
                     break;
 
                 case "5":
@@ -86,6 +92,14 @@ public class UserInteraction {
         }
 
         return amount;
+    }
+
+
+    // Gets the current date and time, and converts the output in a formated way.
+    private static String getCurrentTimestamp() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return now.format(formatter);
     }
 
 }
